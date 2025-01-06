@@ -36,7 +36,11 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended($this->redirectTo);
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended($this->redirectTo); // Trang dashboard cho admin
+            } elseif (Auth::user()->role === 'customer') {
+                return redirect()->intended($this->redirectTo); // Trang home cho customer
+            }
         }
  
         return back()->withErrors([
