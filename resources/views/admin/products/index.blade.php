@@ -8,6 +8,11 @@
     <div class="container">
 
         <!-- Nút Thêm sản phẩm ở đầu trang -->
+        @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+        @endif
 
             <div class="mb-3">
                 <a href="{{ route('admin.products.create') }}" class="btn btn-primary">Thêm sản phẩm</a>

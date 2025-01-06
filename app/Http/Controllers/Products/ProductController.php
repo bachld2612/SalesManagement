@@ -7,8 +7,10 @@ use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\FavouriteList;
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -16,16 +18,18 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $products = Product::paginate(6);
-      
-        if (Auth::check() && Auth::user()->role_name === 'admin') {
-            return view('admin.products.index', compact('products'));
-        } else {
-            return view('welcome', compact('products'));
-        }
-        
+{
+    $products = Product::paginate(6);
+    if (Auth::check() && Auth::user()->role_name === 'admin') {
+        return view('admin.products.index', compact('products'));
+    } else {
+        $favouriteProducts = Auth::check()
+            ? FavouriteList::where('user_id', Auth::user()->id)->pluck('product_id')->toArray()
+            : [];
+        return view('welcome', compact('products', 'favouriteProducts'));
     }
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -79,7 +83,7 @@ public function store(Request $request)
     $product->save();
 
     // Chuyển hướng về trang danh sách sản phẩm với thông báo thành công
-    return redirect()->route('products.index')->with('success', 'Product created successfully!');
+    return redirect()->route('products.index')->with('success', 'Đã thêm sản phẩm thành công!');
 }
 
 
@@ -87,14 +91,25 @@ public function store(Request $request)
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-       $product = Product::findOrFail($id);
-        if (Auth::check() && Auth::user()->role_name === 'admin') {
-            return view('admin.products.show', compact('product'));
-        } else {
-            return view('customer.products.show', compact('product'));
-        }
+{
+    $product = Product::findOrFail($id);
+    $favouriteCount = 0;
+
+    // Gọi stored procedure và nhận giá trị trả về
+    $result = DB::select('EXEC sp_GetFavoriteCount ?', [$id]);
+
+    // Kiểm tra nếu có kết quả trả về và lấy giá trị favourite_count
+    if (count($result) > 0) {
+        $favouriteCount = $result[0]->favorite_count ?? 0;
     }
+
+    if (Auth::check() && Auth::user()->role_name === 'admin') {
+        return view('admin.products.show', compact('product'));
+    } else {
+        return view('customer.products.show', compact('product', 'favouriteCount'));
+    }
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -150,7 +165,7 @@ public function store(Request $request)
 
     $product->save();
 
-    return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+    return redirect()->route('products.index')->with('success', 'Đã cập nhật sản phẩm thành công!');
 }
 
 
@@ -174,7 +189,36 @@ public function destroy(string $id)
     $product->delete();
 
     // Chuyển hướng về trang danh sách sản phẩm với thông báo thành công
-    return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
+    return redirect()->route('products.index')->with('success', 'Đã xóa sản phẩm thành công!');
+}
+
+
+// Hàm để lấy tất cả sản phẩm yêu thích của người dùng
+    public function getUserFavouriteProducts()
+    {
+        // Gọi stored procedure và nhận kết quả
+        $userId = Auth::user()->id;
+        $favouriteProducts1 = DB::select('SELECT * FROM dbo.fn_GetUserFavouriteProducts(?)', [$userId]);
+        $favouriteProducts = Auth::check()
+        ? FavouriteList::where('user_id', Auth::user()->id)->pluck('product_id')->toArray()
+        : [];
+        $favouriteProducts1 = collect($favouriteProducts1); 
+        // Trả về kết quả ra view
+ 
+        return view('customer.products.favourite', compact('favouriteProducts1','favouriteProducts'));
+    }
+
+
+public function getUserPurchasedProducts()
+{
+    // Kiểm tra nếu người dùng đã đăng nhập
+        $userId = Auth::user()->id;
+
+        // Gọi stored procedure để lấy danh sách sản phẩm đã mua
+        $purchasedProducts = DB::select('EXEC sp_GetUserPurchasedProducts ?', [$userId]);
+
+        return view('customer.products.purchased', compact('purchasedProducts'));
+    
 }
 
 }
