@@ -17,7 +17,7 @@
         
             <button type="submit" class="btn btn-primary">Login</button>
             <button type="button" class="btn btn-primary">
-                <a href="{{ route('/') }}" style="color: white; text-decoration: none;">Cancel</a>
+                <a href="{{ route('products.index') }}" style="color: white; text-decoration: none;">Cancel</a>
             </button>
         </form>
     </main>
