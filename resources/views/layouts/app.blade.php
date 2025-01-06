@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    
 
 
     <style>
@@ -26,11 +26,11 @@
           </a>
     
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Carts</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Wishlist</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+            <li><a href="#" class="nav-link px-2 link-secondary">Trang chủ</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">Sản phẩm</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">Giỏ hàng</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">Danh mục yêu thích</a></li>
+            <li><a href="#" class="nav-link px-2 link-dark">Thêm</a></li>
           </ul>
     
           <div class="col-md-3 text-end">
@@ -50,14 +50,15 @@
         </header>
       </div>
 
-    @yield('content')
+    <main class="container">@yield('content')</main>
 
-    <footer class="container">
-        <p class="float-end"><a href="#">Back to top</a></p>
-        <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer class="container mt-3">
+        <p class="float-end"><a href="#">Quay lại đầu trang</a></p>
+        <p>&copy; Công ty TNHH một thành viên</p>
       </footer>
     </main>
     
-
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
