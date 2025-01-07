@@ -28,9 +28,12 @@
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="#" class="nav-link px-2 link-secondary">Trang chủ</a></li>
             <li><a href="{{ route('products.index') }}" class="nav-link px-2 link-dark">Sản phẩm</a></li>
+            @if(auth()->check())
             <li><a href="#" class="nav-link px-2 link-dark">Giỏ hàng</a></li>
             <li><a href="{{ route('customer.products.favourite') }}" class="nav-link px-2 link-dark">Danh mục yêu thích</a></li>
             <li><a href="{{ route('customer.products.purchased') }}" class="nav-link px-2 link-dark">Đánh giá</a></li>
+
+            @endif
           </ul>
     
           <div class="col-md-3 text-end">

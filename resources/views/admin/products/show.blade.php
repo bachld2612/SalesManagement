@@ -9,7 +9,7 @@
         <p class="card-text">Giá tiền: {{$product->price}} VNĐ</p>
         <p class="card-text">Thể loại: {{$product->category}}</p>
         <p class="card-text">Số lượng: {{$product->amount}} </p>
-        <p class="card-text">Số lượng yêu thích: {{$product->favorite_count}}</p>
+        <p class="card-text">Số lượng yêu thích: {{$favouriteCount}}</p>
         <a href="{{route('products.index')}}" class="btn btn-primary">Trở về</a>
     </div>
 </div>

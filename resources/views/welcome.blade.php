@@ -43,6 +43,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                     <a href="{{route("customer.products.show", $product->id)}}" class="btn btn-sm btn-outline-secondary">Chi tiết</a>
+                    @if(auth()->check())
                     <form action="{{ route('customer.favourites.toggle', $product->id) }}" method="POST" style="display: inline;">
                       @csrf
                       <button 
@@ -51,6 +52,7 @@
                           {{ in_array($product->id, $favouriteProducts) ? 'Đã yêu thích' : 'Yêu thích' }}
                       </button>
                   </form>
+                    @endif
 
                     </div>
                     <small class="text-muted">{{$product->price}} VND</small>

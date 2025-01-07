@@ -104,7 +104,7 @@ public function store(Request $request)
     }
 
     if (Auth::check() && Auth::user()->role_name === 'admin') {
-        return view('admin.products.show', compact('product'));
+        return view('admin.products.show', compact('product','favouriteCount'));
     } else {
         return view('customer.products.show', compact('product', 'favouriteCount'));
     }
