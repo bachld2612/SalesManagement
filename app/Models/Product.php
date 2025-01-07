@@ -8,5 +8,10 @@ class Product extends Model
 {
 
     protected $table = 'products';
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
     //
 }
