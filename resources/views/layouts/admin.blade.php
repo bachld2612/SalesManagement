@@ -30,6 +30,7 @@
             <li><a href="#" class="nav-link px-2 link-dark">Sản phẩm</a></li>
             <li><a href="{{route('suppliers.index')}}" class="nav-link px-2 link-dark">Nhà cung cấp</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Danh mục yêu thích</a></li>
+            <li><a href="{{ route('admin.products.ratelist') }}" class="nav-link px-2 link-dark">DS đánh giá</a></li>
             <li><a href="#" class="nav-link px-2 link-dark">Thêm</a></li>
           </ul>
     

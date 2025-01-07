@@ -8,15 +8,15 @@ use App\Http\Controllers\Rates\RateController;
 
 
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
-
+Route::get('admin/products/create',[ProductController::class,'create'])->name('admin.products.create');
 Route::get('customer/products/{id}', [ProductController::class, 'show'])->name('customer.products.show');
 Route::get('admin/products/{id}', [ProductController::class, 'show'])->name('admin.products.show');
 
 Route::put('admin/products/{id}',[ProductController::class,'update'])->name('admin.products.update');
 Route::get('admin/products/{id}/edit',[ProductController::class,'edit'])->name('admin.products.edit');
 
-Route::get('admin/products/create',[ProductController::class,'create'])->name('admin.products.create');
-Route::post('admin/products',[ProductController::class,'store'])->name('admin.products.store');
+
+Route::post('admin/products/',[ProductController::class,'store'])->name('admin.products.store');
 
 Route::delete('admin/products/{id}',[ProductController::class,'destroy'])->name('admin.products.destroy');
 
@@ -44,5 +44,9 @@ Route::get('/suppliers/{id}/edit', [SupplierController::class, 'edit'])->name('s
 
 Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
 
+Route::get('customer/products/top-rated-products/i', [ProductController::class, 'topRated'])->name('customer.products.topRated');
 
+Route::get('customer/products/top-Favourite-products/i', [ProductController::class, 'topFavouriteProducts'])->name('customer.products.topFavourite');
+
+Route::get('admin/products/product-rates/i',[ProductController::class,'showProductRatings'])->name('admin.products.ratelist');
 require __DIR__ . '/auth.php';

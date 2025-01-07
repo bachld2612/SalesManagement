@@ -8,6 +8,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\FavouriteList;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\DB;
@@ -54,7 +55,7 @@ public function store(Request $request)
         'description' => 'required|string',
         'price' => 'required|numeric',
         'amount' => 'required|integer|min:1',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,wepb|max:2048',
         'category' => 'nullable|string|max:255',
         'buy_price' => 'required|numeric|min:0',
         'supplier_id' => 'required'
@@ -98,15 +99,19 @@ public function store(Request $request)
     // Gọi stored procedure và nhận giá trị trả về
     $result = DB::select('EXEC sp_GetFavoriteCount ?', [$id]);
 
+    $avgStar = DB::select('SELECT dbo.fn_AvgRating (?) as avg' , [$id]);
+
+    $avgStar = $avgStar[0]->avg?? 0;  
+
     // Kiểm tra nếu có kết quả trả về và lấy giá trị favourite_count
     if (count($result) > 0) {
         $favouriteCount = $result[0]->favorite_count ?? 0;
     }
 
     if (Auth::check() && Auth::user()->role_name === 'admin') {
-        return view('admin.products.show', compact('product','favouriteCount'));
+        return view('admin.products.show', compact('product','favouriteCount','avgStar'));
     } else {
-        return view('customer.products.show', compact('product', 'favouriteCount'));
+        return view('customer.products.show', compact('product', 'favouriteCount','avgStar'));
     }
 }
 
@@ -216,9 +221,56 @@ public function getUserPurchasedProducts()
 
         // Gọi stored procedure để lấy danh sách sản phẩm đã mua
         $purchasedProducts = DB::select('EXEC sp_GetUserPurchasedProducts ?', [$userId]);
+        $ratedProductIds = DB::table('rates')
+        ->where('user_id', $userId)
+        ->pluck('product_id')
+        ->toArray();
 
+    // Chuyển danh sách sản phẩm đã mua thành collection và đánh dấu sản phẩm đã đánh giá
+    $purchasedProducts = collect($purchasedProducts)->map(function ($product) use ($ratedProductIds) {
+        $product->rated = in_array($product->id, $ratedProductIds);
+        return $product;
+    });
         return view('customer.products.purchased', compact('purchasedProducts'));
     
 }
+
+
+public function topRated()
+{
+    // Lấy danh sách các sản phẩm được đánh giá cao nhất
+     // Lấy Top 10 sản phẩm có đánh giá cao nhất
+     $topRatedProducts = DB::table('vw_ProductRatings')
+     ->orderByDesc('average_rating')
+     ->get();
+
+ return view('customer.products.top-rated', compact('topRatedProducts'));
+}
+
+
+public function topFavouriteProducts()
+{
+    // Lấy danh sách các sản phẩm được đánh giá cao nhất
+     // Lấy Top 10 sản phẩm có đánh giá cao nhất
+     $topFavouriteProducts = DB::table('vw_ProductFavoriteDetails')
+     ->get();
+
+ return view('customer.products.top-favourite', compact('topFavouriteProducts'));
+}
+
+
+public function showProductRatings()
+{
+    // Gọi stored procedure và nhận kết quả trả về
+
+    $ratings = DB::select('SELECT * FROM dbo.fn_CalculateAverageRating()');
+  
+    
+
+    return view('admin.products.ratelists', compact('ratings'));
+
+   
+}
+
 
 }

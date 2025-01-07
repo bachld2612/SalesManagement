@@ -9,8 +9,9 @@
         <p class="card-text">Giá tiền: {{$product->price}} VNĐ</p>
         <p class="card-text">Thể loại: {{$product->category}} VNĐ</p>
         <p class="card-text">Số lượng: {{$product->amount}} </p>
+        <p class="card-text">Đánh giá: {{$avgStar}}/5 </p>
         <p class="card-text">Số lượng yêu thích: {{$favouriteCount}}</p>
-        <a href="{{route('products.index')}}" class="btn btn-primary">Trở về</a>
+        <a href="{{url()->previous()}}" class="btn btn-primary">Trở về</a>
         <button href="#" class="btn btn-primary">Mua</button>
         <button href="#" class="btn btn-primary">Thêm vào giỏ hàng</button>
     </div>
