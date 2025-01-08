@@ -17,6 +17,13 @@
         height: 600px; /* Thay đổi giá trị này để điều chỉnh chiều cao */
         object-fit: cover; /* Đảm bảo ảnh được cắt sao cho phù hợp với chiều cao mà bạn đã định */
         }
+
+        img {
+      width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+      height: 400px; /* Đặt chiều cao cố định */
+      object-fit: contain; /* Đảm bảo ảnh không bị méo */
+      border-radius: 5px; /* (Tùy chọn) Bo tròn các góc */
+  }
     </style>
 <body>
     <div class="container">

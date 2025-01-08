@@ -18,7 +18,7 @@
 
         img {
       width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
-      height: 200px; /* Đặt chiều cao cố định */
+      height: 400px; /* Đặt chiều cao cố định */
       object-fit: contain; /* Đảm bảo ảnh không bị méo */
       border-radius: 5px; /* (Tùy chọn) Bo tròn các góc */
   }
