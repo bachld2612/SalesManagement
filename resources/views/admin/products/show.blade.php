@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="card">
-    <img src="{{asset('storage/images/picture1.png')}}" class="card-img-top" alt="...">
+    <img src="{{asset('storage/'.$product->image_link)}}" class="card-img-top" alt="...">
 
     <div class="card-body">
         <h5 class="card-title">{{$product->name}}</h5>
