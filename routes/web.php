@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\carts\CartController;
+use App\Http\Controllers\orders\OrderController;
 use App\Http\Controllers\products\ProductController;
 use App\Http\Controllers\suppliers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +12,9 @@ use App\Http\Controllers\Rates\RateController;
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::get('admin/products/create',[ProductController::class,'create'])->name('admin.products.create');
 Route::get('customer/products/{id}', [ProductController::class, 'show'])->name('customer.products.show');
+
+Route::get('admin/products/create',[ProductController::class,'create'])->name('admin.products.create');
+
 Route::get('admin/products/{id}', [ProductController::class, 'show'])->name('admin.products.show');
 
 Route::put('admin/products/{id}',[ProductController::class,'update'])->name('admin.products.update');
@@ -48,5 +53,18 @@ Route::get('customer/products/top-rated-products/i', [ProductController::class, 
 
 Route::get('customer/products/top-Favourite-products/i', [ProductController::class, 'topFavouriteProducts'])->name('customer.products.topFavourite');
 
+Route::get('/customer/carts', [CartController::class, 'index'])->name('customer.carts.index');
+Route::post('/customer/carts/handle', [CartController::class, 'handleCart'])->name('customer.carts.handle');
+Route::post('/customer/carts/{product}', [CartController::class, 'store'])->name('customer.carts.store');
+
+Route::get('customer/orders', [OrderController::class, 'index'])->name('customer.orders.index');
+Route::put('customer/orders/{id}', [OrderController::class, 'destroy'])->name('customer.orders.destroy');
+
+Route::get('customer/orders/{id}', [OrderController::class, 'show'])->name('customer.orders.show');
+
+Route::get('admin/orders', [OrderController::class, 'index'])->name('admin.orders.index');
+
+Route::post('admin/orders/{id}', [OrderController::class, 'completeOrder'])->name('admin.orders.complete');
+Route::put('admin/orders/{id}/deliver', [OrderController::class, 'deliverOrder'])->name('admin.orders.deliver');
 Route::get('admin/products/product-rates/i',[ProductController::class,'showProductRatings'])->name('admin.products.ratelist');
 require __DIR__ . '/auth.php';

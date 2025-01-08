@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -20,10 +21,12 @@ class ProductController extends Controller
      */
     public function index()
 {
-    $products = Product::paginate(6);
+    
     if (Auth::check() && Auth::user()->role_name === 'admin') {
+        $products = Product::paginate(6);
         return view('admin.products.index', compact('products'));
     } else {
+        $products = Product::where('amount','>',0)->paginate(6);
         $favouriteProducts = Auth::check()
             ? FavouriteList::where('user_id', Auth::user()->id)->pluck('product_id')->toArray()
             : [];

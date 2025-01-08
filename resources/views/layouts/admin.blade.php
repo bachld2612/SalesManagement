@@ -26,12 +26,12 @@
           </a>
     
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Trang chủ</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Sản phẩm</a></li>
+            <li><a href="{{route('products.index')}}" class="nav-link px-2 link-secondary">Trang chủ</a></li>
+            <li><a href="{{route('products.index')}}" class="nav-link px-2 link-dark">Sản phẩm</a></li>
             <li><a href="{{route('suppliers.index')}}" class="nav-link px-2 link-dark">Nhà cung cấp</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Danh mục yêu thích</a></li>
+            <li><a href="{{route('admin.orders.index')}}" class="nav-link px-2 link-dark">Đơn hàng</a></li>
             <li><a href="{{ route('admin.products.ratelist') }}" class="nav-link px-2 link-dark">DS đánh giá</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Thêm</a></li>
+            <!-- <li><a href="#" class="nav-link px-2 link-dark">Thêm</a></li> -->
           </ul>
     
           <div class="col-md-3 text-end">

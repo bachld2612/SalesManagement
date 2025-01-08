@@ -30,12 +30,6 @@
                     <div class="btn-group">
                         <a href="{{route('admin.products.show', $product->id)}}" class="btn btn-sm btn-outline-primary me-2">Chi tiết</a>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-outline-warning me-2">Sửa</a>
-                
-                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
-                    </form>
                     </div>
                     <small class="text-muted">{{$product->price}} VND</small>
                 </div>

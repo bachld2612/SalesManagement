@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Top 10 Sản phẩm được đánh giá cao nhất</h2>
+    <h2>Top sản phẩm được đánh giá cao nhất</h2>
 
     @if($topRatedProducts->isNotEmpty())
         <div class="row">
