@@ -16,12 +16,14 @@
         </thead>
         <tbody>
             @foreach($ratings as $rating)
+            @if($rating->average_rating>0)
             <tr>
                 <td>{{ $rating->product_id }}</td>
                 <td>{{ $rating->product_name }}</td>
                 <td>{{ number_format($rating->average_rating, 2) }}</td>
                 <td>{{ $rating->total_ratings }}</td>
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>
