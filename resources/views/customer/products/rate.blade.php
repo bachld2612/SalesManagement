@@ -27,13 +27,16 @@
             <label for="description" class="form-label">Bình luận</label>
             <textarea name="description" id="description" class="form-control" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+            Gửi đánh giá
+        </button>
     </form>
     @endauth
 
-    <a href="{{route('products.index')}}" class="btn btn-primary">Trở về</a>
-    <button href="#" class="btn btn-primary">Mua</button>
-    <button href="#" class="btn btn-primary">Thêm vào giỏ hàng</button>
+    <div class="d-flex justify-content-start gap-2 mt-4">
+        <a href="{{ route('customer.products.purchased') }}" class="btn btn-secondary ">Trở về</a>
+        <button class="btn btn-success ">Mua lại</button>
+    </div>
 </div>
 
 @endsection

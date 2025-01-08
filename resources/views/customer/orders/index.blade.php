@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
 <h1 class="text-center text-primary">Đơn hàng</h1>
+@if(session('success'))
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
+@endif
 <table class="table">
     <thead>
         <tr>

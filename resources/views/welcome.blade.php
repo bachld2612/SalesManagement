@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(session('success'))
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
+@endif
+
+@if(session('error'))
+<div class="alert alert-danger">
+  {{ session('error') }}
+</div>
+@endif
+
+
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -23,18 +37,6 @@
   </button>
 </div>
 
-
-@if(session('success'))
-<div class="alert alert-success">
-  {{ session('success') }}
-</div>
-@endif
-
-@if(session('error'))
-<div class="alert alert-danger">
-  {{ session('error') }}
-</div>
-@endif
 
 <div class="album py-5 bg-light mb-3">
   <div class="container">

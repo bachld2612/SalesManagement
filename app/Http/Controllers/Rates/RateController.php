@@ -50,7 +50,7 @@ class RateController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->back()->with('success', 'Đánh giá của bạn đã được gửi!');
+        return redirect()->route('customer.products.purchased')->with('success', 'Đánh giá của bạn đã được gửi!');
     }
 
     /**
