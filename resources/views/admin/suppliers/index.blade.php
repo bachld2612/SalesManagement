@@ -11,8 +11,6 @@
             @foreach($suppliers as $supplier)
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="{{asset('storage/images/picture1.png')}}" class="card-img-top" alt="...">
-
                     <div class="card-body">
                         <p class="card-text">{{$supplier->name}}</p>
                         <p class="card-text">Email: {{$supplier->email}}</p>

@@ -16,7 +16,6 @@
             @foreach($products as $product)
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="{{asset('storage/images/picture1.png')}}" class="card-img-top" alt="...">
 
                     <div class="card-body">
                         <p class="card-text">Mã sản phẩm: {{$product->id}}</p>

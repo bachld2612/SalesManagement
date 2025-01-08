@@ -21,7 +21,7 @@
 
     <div class="mb-3">
         <label for="amount">amount :</label>
-        <input type="number" class="form-control w-10" id="amount" name="amount" min="1" max="100" step="1" value = {{ $product->amount }}>
+        <input type="number" class="form-control w-10" id="amount" name="amount" min="1" step="1" value = {{ $product->amount }}>
     </div>
 
     <div class="mb-3">
