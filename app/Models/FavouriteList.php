@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rate extends Model
+class FavouriteList extends Model
 {
-    protected $fillable = ['user_id', 'product_id', 'star', 'description'];
+    protected $fillable = ['user_id', 'product_id'];
+    public $timestamps = false;
 
-    // Quan hệ với User
+    protected $table = 'favourite_lists';
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Quan hệ với Product
+    /**
+     * Lấy sản phẩm liên kết với favourite.
+     */
     public function product()
     {
         return $this->belongsTo(Product::class);

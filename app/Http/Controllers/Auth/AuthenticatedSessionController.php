@@ -12,7 +12,7 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
 
-    protected $redirectTo = '/'; 
+    protected $redirectTo = '/';
     /**
      * Display the login view.
      */
@@ -32,15 +32,20 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         $request->session()->forget('url.intended');
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->intended($this->redirectTo);
+
+            if (Auth::user()->role_name === 'admin') {
+                return redirect()->route('dashboard.index'); // Trang dashboard cho admin
+            } elseif (Auth::user()->role_name === 'customer') {
+                return redirect()->route('products.index'); // Trang home cho customer
+            }
+            // return redirect()->route('products.index');
         }
- 
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'username' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
 

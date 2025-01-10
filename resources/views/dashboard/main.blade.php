@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <p class="category"><strong>Account quantity</strong></p>
+                    <p class="category"><strong>View</strong></p>
                     <h3 class="card-title">70,340</h3>
                     {{-- @foreach ($userRoles as $role)
                         <tr>
@@ -57,8 +57,8 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <p class="category"><strong>Revenue</strong></p>
-                    <h3 class="card-title">$23,100</h3>
+                    <p class="category"><strong>Doanh thu các đơn hàng đã thanh toán</strong></p>
+                    <h3 class="card-title">{{ $doanhthu }}</h3>
                 </div>
                 <div class="card-footer">
                     <div class="stats">
@@ -101,30 +101,30 @@
         <div class="col-lg-7 col-md-12">
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
-                    <h4 class="card-title">Employees Stats</h4>
-                    <p class="category">New employees on 15th December, 2016</p>
+                    <h4 class="card-title">Danh sách tài khoản mới khởi tạo</h4>
+                    <p class="category">7 ngày gần nhất</p>
                 </div>
                 <div class="card-content table-responsive">
                     <table class="table table-hover">
                         <thead class="text-primary">
                             <tr>
-                                <th>ID</th>
                                 <th>Username</th>
                                 <th>Full Name</th>
                                 <th>Membership Tier</th>
                                 <th>Phone Number</th>
-                                <th>Total Spent</th>
+                                <th>Address</th>
+                                <th>Created At</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($topSpenders as $index => $spender)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $spender->Username }}</td>
-                                    <td>{{ $spender->Fullname }}</td>
-                                    <td>{{ $spender->MembershipTier }}</td>
-                                    <td>{{ $spender->PhoneNumber }}</td>
-                                    <td>{{ $spender->TotalSpent }}</td>
+                                    <td>{{ $spender->username }}</td>
+                                    <td>{{ $spender->fullname }}</td>
+                                    <td>{{ $spender->membership_tier }}</td>
+                                    <td>{{ $spender->phone_number }}</td>
+                                    <td>{{ $spender->address }}</td>
+                                    <td>{{ $spender->created_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -136,46 +136,19 @@
         <div class="col-lg-5 col-md-12">
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
-                    <h4 class="card-title">Activities</h4>
+                    <h4 class="card-title">Top chi tiêu</h4>
                 </div>
                 <div class="card-content">
                     <div class="streamline">
                         <div class="sl-item sl-primary">
-                            <div class="sl-content">
-                                <small class="text-muted">5 mins ago</small>
-                                <p>Williams has just joined Project X</p>
-                            </div>
+                            @foreach ($topchitieu as $chitieu)
+                                <div class="sl-content">
+                                    <small class="text-muted"> {{ $chitieu->TotalSpent }} </small>
+                                    <p>{{ $chitieu->Fullname }}</p>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="sl-item sl-danger">
-                            <div class="sl-content">
-                                <small class="text-muted">25 mins ago</small>
-                                <p>Jane has sent a request for access to the project folder</p>
-                            </div>
-                        </div>
-                        <div class="sl-item sl-success">
-                            <div class="sl-content">
-                                <small class="text-muted">40 mins ago</small>
-                                <p>Kate added you to her team</p>
-                            </div>
-                        </div>
-                        <div class="sl-item">
-                            <div class="sl-content">
-                                <small class="text-muted">45 minutes ago</small>
-                                <p>John has finished his task</p>
-                            </div>
-                        </div>
-                        <div class="sl-item sl-warning">
-                            <div class="sl-content">
-                                <small class="text-muted">55 mins ago</small>
-                                <p>Jim shared a folder with you</p>
-                            </div>
-                        </div>
-                        <div class="sl-item">
-                            <div class="sl-content">
-                                <small class="text-muted">60 minutes ago</small>
-                                <p>John has finished his task</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 

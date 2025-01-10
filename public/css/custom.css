@@ -206,7 +206,7 @@ a:focus {
 }
 
 
-#sidebar ul.components {    
+#sidebar ul.components {
     padding: 20px 0;
 }
 
@@ -310,7 +310,7 @@ a:focus {
 .navbar-nav > li.active{
    color: #FFFFFF;
    border-radius:4px;
-    background-color: rgba(0, 0, 0, 0.08);  
+    background-color: rgba(0, 0, 0, 0.08);
  }
 
 .navbar-nav > li > a {
@@ -494,7 +494,7 @@ a:focus {
     font-weight: 400;
 	color: #222222;
     text-decoration: none;
-	
+
 }
 
 .table > thead > tr > th {
@@ -586,7 +586,7 @@ a:focus {
 /*=============================================
   footer design start
   =========================================*/
- 
+
 .footer {
     border-top: 1px solid #e7e7e7;
 }
@@ -624,7 +624,7 @@ footer .copyright {
 /*=============================================
   footer design end
   =========================================*/
-  
+
 
 
 #sidebar.show-nav,.body-overlay.show-nav{
@@ -677,11 +677,11 @@ footer .copyright {
     float: right;
     transition: all 0.3s;
     background-color: #EEEEEE;
-}  
+}
 
 #content.active {
     width: calc(100% - 80px);
-} 
+}
 
 #sidebar.active .menu {
     position: absolute;
@@ -693,7 +693,7 @@ footer .copyright {
     top: 0;
     border: 1px solid #dcd9d9;
     z-index: 4;
-}                                                                                                                                                                                                              
+}
 }
 
 
@@ -710,7 +710,7 @@ footer .copyright {
     left: auto;
     opacity: 0;
 }
-	
+
 }
 
 
@@ -726,7 +726,7 @@ footer .copyright {
 	transform:translatex(-100%);
 	transition: all 150ms linear;
 	box-shadow:none!important;
-}	
+}
 
 .body-overlay{
 	position:fixed;
@@ -750,6 +750,7 @@ footer .copyright {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+
 
 
 

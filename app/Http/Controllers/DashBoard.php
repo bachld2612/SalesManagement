@@ -13,9 +13,15 @@ class DashBoard extends Controller
     {
         $countUserRoles = DB::select('SELECT * FROM fn_CountUsersByRole()');
 
-        $topSpenders = DB::select('SELECT * FROM Top10Spenders');
+        $topSpenders = DB::select('SELECT * FROM vw_RecentUsers');
 
-        return view('dashboard/main', ['countUserRoles' => $countUserRoles, 'topSpenders' => $topSpenders]);
+        $topchitieu = DB::select('SELECT * FROM dbo.GetTop10Spenders()');
+
+        $doanhthuResult = DB::select('SELECT COALESCE(dbo.getPaidMoney(), 0) AS total_paid_money');
+        $doanhthu = $doanhthuResult[0]->total_paid_money ?? 0;
+
+
+        return view('dashboard/main', ['countUserRoles' => $countUserRoles, 'topSpenders' => $topSpenders, 'topchitieu' => $topchitieu, 'doanhthu' => $doanhthu]);
     }
 
 
