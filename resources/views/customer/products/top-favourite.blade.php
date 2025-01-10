@@ -10,6 +10,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
+                            <img src="{{ asset('storage/'.$product->image_link) }}" class="card-img-top">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">Sô lượng yêu thích: {{ $product->favorite_count }} </p>
                             <p class="card-text">Gía: {{ $product->price }} </p>

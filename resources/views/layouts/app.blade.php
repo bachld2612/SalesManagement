@@ -29,6 +29,9 @@
             border-radius: 5px;
             /* (Tùy chọn) Bo tròn các góc */
         }
+
+  }
+
     </style>
 
 <body>
