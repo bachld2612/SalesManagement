@@ -9,7 +9,7 @@ class FavouriteList extends Model
     protected $fillable = ['user_id', 'product_id'];
     public $timestamps = false;
 
-    protected $table = 'favourite_lists';
+    protected $table = 'favouritelists';
     public function user()
     {
         return $this->belongsTo(User::class);
