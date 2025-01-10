@@ -16,20 +16,21 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create('vi_VN');
         User::create([
-            'username' => 'bach1',
+            'username' => 'user',
             'password' => bcrypt('123456'),
             'fullname' => $faker->name,
             'address' => $faker->address,
             'role_name' => 'customer',
+            'membership_tier' => 'Standard',
             'phone_number' => '0983745273',
         ]);
 
         User::create([
-            'username' => 'admin1',
+            'username' => 'admin',
             'password' => bcrypt('123456'),
             'fullname' => $faker->name,
             'address' => $faker->address,
-            'role_name' => 'admin',
+            'role_name' => 'staff',
             'phone_number' => '0983745273',
         ]);
     }
