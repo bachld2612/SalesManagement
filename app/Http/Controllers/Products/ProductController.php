@@ -268,8 +268,6 @@ public function showProductRatings()
 
     $ratings = DB::select('SELECT * FROM dbo.fn_CalculateAverageRating()');
   
-    
-
     return view('admin.products.ratelists', compact('ratings'));
 
    
